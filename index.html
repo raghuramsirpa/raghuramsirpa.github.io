@@ -13,66 +13,77 @@ body {
   color: white;
 }
 
-/* NAVBAR */
+/* NAV */
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 20px 50px;
+  padding: 20px 40px;
 }
 nav h2 { color: #38bdf8; }
 
 /* HERO */
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 100px 20px;
 }
 .hero h1 {
-  font-size: 48px;
+  font-size: 50px;
 }
-.hero span {
-  color: #38bdf8;
-}
-.hero p {
-  color: #94a3b8;
-}
+.hero span { color: #38bdf8; }
+.hero p { color: #94a3b8; }
 
-/* BUTTON */
 .btn {
   display: inline-block;
-  margin-top: 20px;
+  margin: 10px;
   padding: 12px 25px;
-  background: #38bdf8;
-  color: black;
   border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
   transition: 0.3s;
 }
+.primary {
+  background: #38bdf8;
+  color: black;
+}
+.secondary {
+  border: 1px solid #38bdf8;
+  color: #38bdf8;
+}
 .btn:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
-/* SECTIONS */
+/* SECTION */
 section {
-  padding: 60px 20px;
   max-width: 1000px;
   margin: auto;
+  padding: 60px 20px;
 }
 
-/* PROJECT CARDS */
+/* PROJECTS */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
   gap: 20px;
 }
 .card {
   background: #1e293b;
-  padding: 20px;
   border-radius: 15px;
-  transition: 0.3s;
+  overflow: hidden;
+  transition: 0.4s;
+}
+.card img {
+  width: 100%;
 }
 .card:hover {
   transform: translateY(-10px);
+}
+.card-content {
+  padding: 15px;
+}
+.card a {
+  color: #38bdf8;
+  text-decoration: none;
 }
 
 /* SKILLS */
@@ -85,7 +96,17 @@ section {
   margin: 5px;
 }
 
-/* FOOTER */
+/* ANIMATION */
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 1s;
+}
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 footer {
   text-align: center;
   padding: 20px;
@@ -96,53 +117,66 @@ footer {
 
 <body>
 
-<!-- NAV -->
 <nav>
   <h2>Raghu</h2>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero fade">
   <h1>Hi, I'm <span>Raghu Ram Sirpa</span></h1>
-  <p>Data Analyst | Turning data into actionable insights</p>
-  <a href="#" class="btn">View My Work</a>
+  <p>Data Analyst | Turning data into business decisions</p>
+
+  <a href="YOUR_CV_LINK.pdf" class="btn primary">Download CV</a>
+  <a href="https://github.com/raghuramsirpa" class="btn secondary">GitHub</a>
 </div>
 
 <!-- ABOUT -->
-<section>
+<section class="fade">
   <h2>About Me</h2>
   <p>
-    MSc Data Analytics student with strong skills in Python, SQL, Tableau, and Power BI.
-    Passionate about solving real-world business problems using data.
+    Data Analyst with strong skills in Python, SQL, and data visualization.
+    I specialize in transforming raw data into actionable insights that drive business decisions.
   </p>
 </section>
 
 <!-- PROJECTS -->
-<section>
+<section class="fade">
   <h2>Projects</h2>
 
   <div class="projects">
 
     <div class="card">
-      <h3>Customer Churn Analysis</h3>
-      <p>Used Python & ML to identify high-risk customers and reduce churn.</p>
+      <img src="https://via.placeholder.com/400x200">
+      <div class="card-content">
+        <h3>Customer Churn Analysis</h3>
+        <p>Identified 27% high-risk customers using Python.</p>
+        <a href="#">View Project →</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Sales Dashboard</h3>
-      <p>Built Power BI dashboard tracking KPIs and revenue growth.</p>
+      <img src="https://via.placeholder.com/400x200">
+      <div class="card-content">
+        <h3>Sales Dashboard</h3>
+        <p>Built Power BI dashboard tracking revenue KPIs.</p>
+        <a href="#">View Project →</a>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Loan Risk Analysis</h3>
-      <p>Analyzed financial data to predict loan defaults using Python.</p>
+      <img src="https://via.placeholder.com/400x200">
+      <div class="card-content">
+        <h3>Loan Risk Model</h3>
+        <p>Predicted loan defaults using machine learning.</p>
+        <a href="#">View Project →</a>
+      </div>
     </div>
 
   </div>
 </section>
 
 <!-- SKILLS -->
-<section>
+<section class="fade">
   <h2>Skills</h2>
   <div class="skills">
     <span>Python</span>
@@ -154,7 +188,7 @@ footer {
 </section>
 
 <!-- CONTACT -->
-<section>
+<section class="fade">
   <h2>Contact</h2>
   <p>Email: your@email.com</p>
   <p>GitHub: github.com/raghuramsirpa</p>
@@ -163,6 +197,22 @@ footer {
 <footer>
   <p>© 2026 Raghu Ram Sirpa</p>
 </footer>
+
+<!-- SCROLL ANIMATION SCRIPT -->
+<script>
+const elements = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  elements.forEach(el => {
+    const position = el.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if(position < screenHeight - 100){
+      el.classList.add('show');
+    }
+  });
+});
+</script>
 
 </body>
 </html>
